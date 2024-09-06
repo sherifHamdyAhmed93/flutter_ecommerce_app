@@ -13,4 +13,6 @@ abstract class ColorManager{
   static const Color darkGGrey = Color(0xff525252);
   static const Color transparent = Colors.transparent;
   static const Color containerGrey = Color(0xffDBE4ED);
+  static const Color white = Color(0xffffffff);
+
 }
