@@ -9,7 +9,7 @@ abstract class RoutesGenerator{
   static Route<dynamic> getRoute(RouteSettings settings){
     switch (settings.name){
       case Routes.splashScreenRoute:
-        return MaterialPageRoute(builder: (_) => const SplashScreen());
+        return MaterialPageRoute(builder: (_) => SplashScreen());
       case Routes.signInRoute:
         return MaterialPageRoute(builder: (_) =>  SignInScreen());
       case Routes.signupRoute:
