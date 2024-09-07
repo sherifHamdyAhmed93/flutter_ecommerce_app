@@ -35,10 +35,9 @@ class SignInScreen extends StatelessWidget {
           }else if (state is LoginViewModelSuccessState){
             DialogUtils.hideLoader(context);
             DialogUtils.showMessage(context: context, message: 'Login Successfully' , posActionName: 'OK',posAction: (){
-              Navigator.pushNamedAndRemoveUntil(
+              Navigator.pushReplacementNamed(
                 context,
                 Routes.mainRoute,  // Replace with your main route
-                    (Route<dynamic> route) => false,  // Remove all previous routes
               );
             });
           }else{

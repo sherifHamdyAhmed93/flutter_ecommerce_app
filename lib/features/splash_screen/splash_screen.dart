@@ -2,15 +2,23 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/core/assets_manager/assets_manager.dart';
+import 'package:flutter_ecommerce_app/core/constants/app_constants.dart';
 import 'package:flutter_ecommerce_app/core/routes_manager/routes.dart';
+import 'package:flutter_ecommerce_app/core/utils/shared_preference.dart';
 
 class SplashScreen extends StatelessWidget {
-  const SplashScreen({super.key});
-
+   SplashScreen({super.key});
   @override
   Widget build(BuildContext context) {
-    Timer.periodic(const Duration(seconds: 3),(_){
-      Navigator.pushNamed(context,Routes.signInRoute);
+    Timer(const Duration(seconds: 3), () {
+      String route;
+      var token = SharedPreferenceUtil.getData(key: SharedPreferencesConstants.token);
+      if (token is String){
+        route =  Routes.mainRoute;
+      }else{
+        route =  Routes.signInRoute;
+      }
+      Navigator.pushReplacementNamed(context, route);
     });
     return Scaffold(
       body: Image.asset(

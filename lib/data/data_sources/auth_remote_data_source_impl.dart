@@ -1,6 +1,7 @@
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_ecommerce_app/core/constants/app_constants.dart';
+import 'package:flutter_ecommerce_app/core/utils/shared_preference.dart';
 import 'package:flutter_ecommerce_app/data/api_manager/api_manager.dart';
 import 'package:flutter_ecommerce_app/data/auth_remote_data_source.dart';
 import 'package:flutter_ecommerce_app/data/dto/failure.dart';
@@ -8,6 +9,7 @@ import 'package:flutter_ecommerce_app/data/dto/login_response_dto.dart';
 import 'package:flutter_ecommerce_app/data/dto/register_response_dto.dart';
 import 'package:flutter_ecommerce_app/domain/entities/login_response_entity.dart';
 import 'package:injectable/injectable.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 @Injectable(as: AuthRemoteDataSource)
 class AuthRemoteDataSourceImpl extends AuthRemoteDataSource{
@@ -29,9 +31,10 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource{
 
       };
       try{
-        var response =  await apiManager.post(Endpoints.register, json);
+        var response =  await apiManager.post(entPoint:Endpoints.register,body: json);
         var registerResponseDto = RegisterResponseDto.fromJson(response.data);
         if (response.statusCode! >= 200 && response.statusCode! <= 300){
+          await SharedPreferenceUtil.saveData(key: SharedPreferencesConstants.token, data: registerResponseDto.token ?? '');
           return Right(registerResponseDto);
         }else{
           return Left(Failure(errorMessage: registerResponseDto.message ?? ''));
@@ -58,9 +61,10 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource{
         'password': password,
       };
       try{
-        var response =  await apiManager.post(Endpoints.signIn, json);
+        var response =  await apiManager.post(entPoint:Endpoints.signIn, body: json);
         var loginResponseDto = LoginResponseDto.fromJson(response.data);
         if (response.statusCode! >= 200 && response.statusCode! <= 300){
+          await SharedPreferenceUtil.saveData(key: SharedPreferencesConstants.token, data: loginResponseDto.token ?? '');
           return Right(loginResponseDto);
         }else{
           return Left(Failure(errorMessage: loginResponseDto.message ?? ''));

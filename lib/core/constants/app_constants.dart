@@ -8,3 +8,8 @@ abstract class ApiConstants {
   static const String baseURL = 'https://ecommerce.routemisr.com';
 
 }
+
+abstract class SharedPreferencesConstants {
+  static const String token = 'token';
+
+}
