@@ -71,4 +71,16 @@ class Validators{
     }
   }
 
+  static String? validatePhoneNumber(String? val) {
+    if (val == null){
+      return 'Phone number field is required';
+    }else if (val.trim().isEmpty){
+      return 'Phone number is required';
+    }else if (val.length < 11){
+      return 'Phone number is not valid';
+    } else {
+      return null;
+    }
+  }
+
 }

@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/core/routes_manager/routes.dart';
 import 'package:flutter_ecommerce_app/core/routes_manager/routes_generator.dart';
+import 'package:flutter_ecommerce_app/di/di.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  configureDependencies();
   runApp(const MyApp());
 }
 
@@ -21,7 +24,7 @@ class MyApp extends StatelessWidget {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RoutesGenerator.getRoute,
-          initialRoute: Routes.splashScreenRoute,
+          initialRoute: Routes.signInRoute,
           home: child,
         );
       },
