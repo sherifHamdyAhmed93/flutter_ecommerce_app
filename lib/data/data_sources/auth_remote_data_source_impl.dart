@@ -4,7 +4,9 @@ import 'package:flutter_ecommerce_app/core/constants/app_constants.dart';
 import 'package:flutter_ecommerce_app/data/api_manager/api_manager.dart';
 import 'package:flutter_ecommerce_app/data/auth_remote_data_source.dart';
 import 'package:flutter_ecommerce_app/data/dto/failure.dart';
+import 'package:flutter_ecommerce_app/data/dto/login_response_dto.dart';
 import 'package:flutter_ecommerce_app/data/dto/register_response_dto.dart';
+import 'package:flutter_ecommerce_app/domain/entities/login_response_entity.dart';
 import 'package:injectable/injectable.dart';
 
 @Injectable(as: AuthRemoteDataSource)
@@ -44,5 +46,32 @@ class AuthRemoteDataSourceImpl extends AuthRemoteDataSource{
     }
 
 
+  }
+
+  @override
+  Future<Either<Failure, LoginResponseEntity>> login(String email, String password) async{
+    List<ConnectivityResult> connectivity = await Connectivity().checkConnectivity();
+
+    if (connectivity.contains(ConnectivityResult.wifi) || connectivity.contains(ConnectivityResult.mobile) ){
+      Map<String,dynamic> json = {
+        'email': email,
+        'password': password,
+      };
+      try{
+        var response =  await apiManager.post(Endpoints.signIn, json);
+        var loginResponseDto = LoginResponseDto.fromJson(response.data);
+        if (response.statusCode! >= 200 && response.statusCode! <= 300){
+          return Right(loginResponseDto);
+        }else{
+          return Left(Failure(errorMessage: loginResponseDto.message ?? ''));
+        }
+      }catch (error){
+        print(error.toString());
+        return Left(Failure(errorMessage: error.toString()));
+
+      }
+    }else{
+      return Left(NetworkError(errorMessage: 'Check your internet connection and try again'));
+    }
   }
 }

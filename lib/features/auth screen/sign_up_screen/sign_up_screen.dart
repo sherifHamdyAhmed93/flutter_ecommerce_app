@@ -35,7 +35,12 @@ class SignUpScreen extends StatelessWidget {
         }else if (state is SignupViewModelSuccessState){
           DialogUtils.hideLoader(context);
           DialogUtils.showMessage(context: context, message: 'Register Successfully' , posActionName: 'OK',posAction: (){
-            Navigator.pushNamed(context, Routes.mainRoute);
+            Navigator.pushNamedAndRemoveUntil(
+              context,
+              Routes.mainRoute,  // Replace with your main route
+                  (Route<dynamic> route) => false,  // Remove all previous routes
+            );
+
           });
         }else{
 
