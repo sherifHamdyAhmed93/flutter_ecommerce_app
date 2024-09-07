@@ -62,7 +62,8 @@ class _MainTextFieldState extends State<MainTextField> {
           ),
           clipBehavior: Clip.antiAliasWithSaveLayer,
           child: TextFormField(
-            maxLines: widget.maxLines,
+            obscureText: widget.isObscured,
+            maxLines: widget.isObscured ? 1:widget.maxLines,
             controller: widget.textEditingController,
             validator: widget.validation,
             readOnly: widget.isReadOnly,
