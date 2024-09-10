@@ -7,7 +7,7 @@ import 'package:flutter_ecommerce_app/main.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class MainTextField extends StatefulWidget {
-   MainTextField({super.key, this.textEditingController, required this.isObscured, this.focusNode, this.nextFocus, this.label, this.hint, required this.textInputType, this.iconData, this.labelTextStyle, this.hintTextStyle, this.backgroundColor, this.borderColor, this.cursorColor, required this.isReadOnly, this.maxLines, this.suffixIcon, this.prefixIcon, this.onTap, this.validation});
+   MainTextField({super.key, this.textEditingController, required this.isObscured,this.isRounded = false, this.focusNode, this.nextFocus, this.label, this.hint, required this.textInputType, this.iconData, this.labelTextStyle, this.hintTextStyle, this.backgroundColor, this.borderColor, this.cursorColor, required this.isReadOnly, this.maxLines, this.suffixIcon, this.prefixIcon, this.onTap, this.validation});
 
   final TextEditingController? textEditingController;
   final bool isObscured;
@@ -26,6 +26,8 @@ class MainTextField extends StatefulWidget {
    final Color? cursorColor;
 
    final bool isReadOnly;
+   final bool isRounded;
+
    final int? maxLines;
 
    final Widget? suffixIcon;
@@ -57,7 +59,7 @@ class _MainTextFieldState extends State<MainTextField> {
           // padding: const EdgeInsets.all(AppPadding.p5),
           decoration: BoxDecoration(
             color: widget.backgroundColor ?? ColorManager.white,
-            borderRadius: BorderRadius.circular(AppSize.s15),
+            borderRadius: BorderRadius.circular(widget.isRounded ? AppSize.s28 : AppSize.s15),
             border: Border.all(color: widget.borderColor ?? ColorManager.white)
           ),
           clipBehavior: Clip.antiAliasWithSaveLayer,

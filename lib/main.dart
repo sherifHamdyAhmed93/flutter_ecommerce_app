@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
       minTextAdapt: true,
       splitScreenMode: true,
       builder: (_,child){
-        return const MaterialApp(
+        return  const MaterialApp(
           debugShowCheckedModeBanner: false,
           onGenerateRoute: RoutesGenerator.getRoute,
           initialRoute: Routes.mainRoute,

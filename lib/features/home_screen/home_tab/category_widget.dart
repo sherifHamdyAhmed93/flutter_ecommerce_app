@@ -14,16 +14,16 @@ class CategoryWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ClipRRect(
-          borderRadius: BorderRadius.circular(50),
+          borderRadius: BorderRadius.circular(100.r),
           clipBehavior: Clip.antiAlias,
           child: Image.network(
               'https://placehold.co/600x400/png',
             width: 100.h,
-            height: 100.h,
+            height: 100.w,
             fit: BoxFit.cover,
           ),
         ),
-        SizedBox(height: AppSize.s8,),
+        const SizedBox(height: AppSize.s8,),
         Expanded(child: Text('Women’s\nfashion',maxLines: 2,overflow: TextOverflow.ellipsis,style: regularTextStyle(color: ColorManager.black,fontSize: FontSize.s12),textAlign: TextAlign.center,))
       ],
     );
