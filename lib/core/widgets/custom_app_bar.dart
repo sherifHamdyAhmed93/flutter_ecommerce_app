@@ -9,15 +9,16 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   CustomAppBar();
 
   @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 60.h); // Increase the height
+  Size get preferredSize => Size.fromHeight(kToolbarHeight + 50.h); // Increase the height
 
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      backgroundColor: ColorManager.white,
       centerTitle: false,
       title: Image.asset(
         ImagesAssets.logoNavIcon,
-        height: kToolbarHeight * 0.6, // Reduce the size of the logo if necessary
+        // height: kToolbarHeight * 0.6, // Reduce the size of the logo if necessary
       ),
       bottom: PreferredSize(
         preferredSize: preferredSize,
@@ -40,7 +41,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
                   ),
                 ),
               ),
-              SizedBox(width: AppSize.s15.w),
+              SizedBox(width: AppSize.s8.w),
               IconButton(
                 onPressed: () {},
                 icon: Image.asset(

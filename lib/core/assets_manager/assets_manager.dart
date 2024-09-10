@@ -8,6 +8,11 @@ abstract class ImagesAssets{
   static const logoNavIcon = '$imagePath/nav_logo.png';
   static const cartIcon = '$imagePath/shopping_cart.png';
 
+  static const tempProductIcon = '$imagePath/headPhone.jpg';
+
+  static const startIcon = '$imagePath/star.png';
+  static const plusIcon = '$imagePath/plus_circle.png';
+
 }
 
 

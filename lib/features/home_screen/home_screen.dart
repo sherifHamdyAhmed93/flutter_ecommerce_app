@@ -24,6 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: ColorManager.white,
       appBar: CustomAppBar(),
       bottomNavigationBar: ClipRRect(
         borderRadius: const BorderRadius.only(
