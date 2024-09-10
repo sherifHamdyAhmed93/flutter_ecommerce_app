@@ -24,6 +24,14 @@ class CircleButton extends StatelessWidget {
         height: 30.h,
         width: 30.h,
         decoration: BoxDecoration(
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.25),
+              offset: const Offset(0, 4),
+              spreadRadius: 0,
+              blurRadius: 4
+            )
+          ],
           shape: BoxShape.circle,
           color: backgroundColor,
         ),

@@ -50,7 +50,7 @@ class _MainTextFieldState extends State<MainTextField> {
         widget.label != null ? 
             Padding(
               padding: const EdgeInsets.only(top:AppPadding.p5),
-              child: Text(widget.label! , style: mediumTextStyle(color: ColorManager.white).copyWith(fontSize: FontSize.s18.sp),),
+              child: Text(widget.label! , style: widget.labelTextStyle ?? mediumTextStyle(color: ColorManager.white).copyWith(fontSize: FontSize.s18.sp),),
             )
             :
             SizedBox(),
