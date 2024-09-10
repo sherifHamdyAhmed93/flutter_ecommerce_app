@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/core/routes_manager/routes.dart';
 import 'package:flutter_ecommerce_app/features/auth%20screen/sign_in_screen/sign_in_screen.dart';
 import 'package:flutter_ecommerce_app/features/auth%20screen/sign_up_screen/sign_up_screen.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/cart_screen/cart_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/home_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/home_tab/home_tab.dart';
 import 'package:flutter_ecommerce_app/features/splash_screen/splash_screen.dart';
@@ -17,6 +18,8 @@ abstract class RoutesGenerator{
         return MaterialPageRoute(builder: (_) =>  SignUpScreen());
       case Routes.mainRoute:
         return MaterialPageRoute(builder: (_) =>  HomeScreen());
+      case Routes.cartRoute:
+        return MaterialPageRoute(builder: (_) =>  CartScreen());
       default:
         return undefinedRoute();
     }

@@ -2,17 +2,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/core/assets_manager/assets_manager.dart';
 import 'package:flutter_ecommerce_app/core/color_manager/color_manager.dart';
 import 'package:flutter_ecommerce_app/core/font_manager/font_manager.dart';
+import 'package:flutter_ecommerce_app/core/routes_manager/routes.dart';
 import 'package:flutter_ecommerce_app/core/style_manager/style_manager.dart';
 import 'package:flutter_ecommerce_app/core/values_manager/values_manager.dart';
 import 'package:flutter_ecommerce_app/core/widgets/main_text_field.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
-class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
+class CustomAppBar extends StatefulWidget implements PreferredSizeWidget {
   CustomAppBar({required this.isProfile});
   bool isProfile;
-  @override
-  Size get preferredSize => Size.fromHeight(kToolbarHeight + 60.h); // Increase the height
+  Size get preferredSize => Size.fromHeight(kToolbarHeight + 60.h);
 
+  @override
+  State<CustomAppBar> createState() => _CustomAppBarState();
+}
+
+class _CustomAppBarState extends State<CustomAppBar> {
+  @override
+ // Increase the height
   @override
   Widget build(BuildContext context) {
     return AppBar(
@@ -23,10 +30,10 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         // height: kToolbarHeight * 0.6, // Reduce the size of the logo if necessary
       ),
       bottom: PreferredSize(
-        preferredSize: preferredSize,
+        preferredSize: widget.preferredSize,
         child: Padding(
           padding: EdgeInsets.symmetric(horizontal: AppPadding.p8),
-          child: isProfile ? _buildNameWithEmail() : _buildSearchWithCart(),
+          child: widget.isProfile ? _buildNameWithEmail() : _buildSearchWithCart(),
         ),
       ),
     );
@@ -52,7 +59,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         ),
         SizedBox(width: AppSize.s8.w),
         IconButton(
-          onPressed: () {},
+          onPressed: () {
+            Navigator.pushNamed(context,Routes.cartRoute);
+          },
           icon: Image.asset(
             ImagesAssets.cartIcon,
             height: AppSize.s28.h, // Limit the size of the icon
@@ -72,5 +81,4 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       ],
     );
   }
-
 }

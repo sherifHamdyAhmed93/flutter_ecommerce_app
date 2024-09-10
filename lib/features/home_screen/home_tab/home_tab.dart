@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_ecommerce_app/core/values_manager/values_manager.dart';
 import 'package:flutter_ecommerce_app/core/widgets/custom_header_section.dart';
-import 'package:flutter_ecommerce_app/features/home_screen/home_tab/announcment_section.dart';
-import 'package:flutter_ecommerce_app/features/home_screen/home_tab/category_widget.dart';
+import 'package:flutter_ecommerce_app/core/widgets/announcment_section.dart';
+import 'package:flutter_ecommerce_app/core/widgets/category_widget.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class HomeTab extends StatelessWidget {
