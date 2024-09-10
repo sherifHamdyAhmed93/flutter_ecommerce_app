@@ -23,6 +23,7 @@ class _CustomAppBarState extends State<CustomAppBar> {
   @override
   Widget build(BuildContext context) {
     return AppBar(
+      elevation: 0,
       backgroundColor: ColorManager.white,
       centerTitle: false,
       title: Image.asset(
