@@ -22,6 +22,22 @@ import '../features/auth%20screen/sign_in_screen/login_view_model_cubit.dart'
     as _i33;
 import '../features/auth%20screen/sign_up_screen/signup_view_model_cubit.dart'
     as _i353;
+import '../features/home_screen/home_tab/data/data_sources/home_tab_remote_data_source.dart'
+    as _i456;
+import '../features/home_screen/home_tab/data/data_sources/home_tab_remote_data_source_impl.dart'
+    as _i822;
+import '../features/home_screen/home_tab/data/repositories/home_tab_repository_impl.dart'
+    as _i91;
+import '../features/home_screen/home_tab/domain/repositories/home_tab_repository.dart'
+    as _i94;
+import '../features/home_screen/home_tab/domain/use_cases/home_brands_usecase.dart'
+    as _i318;
+import '../features/home_screen/home_tab/domain/use_cases/home_categories_usecase.dart'
+    as _i1002;
+import '../features/home_screen/home_tab/presentation/manager/home_tab_brands_view_model_cubit.dart'
+    as _i583;
+import '../features/home_screen/home_tab/presentation/manager/home_tab_categories_view_model_cubit.dart'
+    as _i877;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -35,10 +51,24 @@ extension GetItInjectableX on _i174.GetIt {
       environmentFilter,
     );
     gh.singleton<_i1000.ApiManager>(() => _i1000.ApiManager());
+    gh.factory<_i456.HomeTabRemoteDataSource>(() =>
+        _i822.HomeTabRemoteDataSourceImpl(apiManager: gh<_i1000.ApiManager>()));
     gh.factory<_i45.AuthRemoteDataSource>(() =>
         _i946.AuthRemoteDataSourceImpl(apiManager: gh<_i1000.ApiManager>()));
+    gh.factory<_i94.HomeTabRepository>(() => _i91.HomeTabRepositoryImpl(
+        homeTabRemoteDataSource: gh<_i456.HomeTabRemoteDataSource>()));
+    gh.factory<_i318.HomeBrandsUseCase>(() => _i318.HomeBrandsUseCase(
+        homeTabRepository: gh<_i94.HomeTabRepository>()));
+    gh.factory<_i1002.HomeCategoriesUseCase>(() => _i1002.HomeCategoriesUseCase(
+        homeTabRepository: gh<_i94.HomeTabRepository>()));
+    gh.factory<_i583.HomeTabBrandsViewModelCubit>(() =>
+        _i583.HomeTabBrandsViewModelCubit(
+            homeBrandsUseCase: gh<_i318.HomeBrandsUseCase>()));
     gh.factory<_i306.AuthRepository>(() => _i461.AuthRepositoryImpl(
         authRemoteDataSource: gh<_i45.AuthRemoteDataSource>()));
+    gh.factory<_i877.HomeTabCategoriesViewModelCubit>(() =>
+        _i877.HomeTabCategoriesViewModelCubit(
+            homeCategoriesUseCase: gh<_i1002.HomeCategoriesUseCase>()));
     gh.factory<_i224.RegisterUseCase>(() =>
         _i224.RegisterUseCase(authRepository: gh<_i306.AuthRepository>()));
     gh.factory<_i772.LoginUseCase>(

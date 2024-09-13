@@ -5,7 +5,7 @@ import 'package:flutter_ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:flutter_ecommerce_app/core/widgets/custom_bottom_nav_bar_item.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/category_tab/category_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/favorite_screen/favorite_screen.dart';
-import 'package:flutter_ecommerce_app/features/home_screen/home_tab/home_tab.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/home_tab/presentation/pages/home_tab.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/profile_tab/profile_screen.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
