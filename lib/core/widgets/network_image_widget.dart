@@ -4,17 +4,18 @@ import 'package:flutter_ecommerce_app/core/color_manager/color_manager.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class NetworkImageWidget extends StatelessWidget {
-   NetworkImageWidget({super.key,required this.imageUrl,required this.height,required this.width});
+   NetworkImageWidget({super.key,required this.imageUrl,required this.height,required this.width,this.radius});
   String? imageUrl;
   double height;
   double width;
+   double? radius;
 
   @override
   Widget build(BuildContext context) {
     return CachedNetworkImage(
       imageUrl: imageUrl ?? '',
       imageBuilder: (context, imageProvider) =>  ClipRRect(
-          borderRadius: BorderRadius.circular(height.r),
+          borderRadius: BorderRadius.circular((radius ?? height).r),
           clipBehavior: Clip.antiAlias,
           child: Container(
             width: width,

@@ -6,10 +6,14 @@ import 'package:flutter_ecommerce_app/core/routes_manager/routes.dart';
 import 'package:flutter_ecommerce_app/core/style_manager/style_manager.dart';
 import 'package:flutter_ecommerce_app/core/values_manager/values_manager.dart';
 import 'package:flutter_ecommerce_app/core/widgets/circle_button.dart';
+import 'package:flutter_ecommerce_app/core/widgets/network_image_widget.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/products_tab/domain/entities/productsResponseEntity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class CategoryProductWidget extends StatelessWidget {
-  const CategoryProductWidget({super.key});
+  CategoryProductWidget({super.key,required this.product});
+
+  ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -28,26 +32,25 @@ class CategoryProductWidget extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch ,
           children: [
-            Expanded(
-                flex: 1,
-                child: Stack(
-                    children: [
-                      Image.asset(ImagesAssets.tempProductIcon,fit: BoxFit.cover,width: double.infinity,),
-                      Positioned(child: CircleButton(imageAsset: TabBarAssets.favoriteIcon,onTap: (){},backgroundColor: ColorManager.white,),top: 5,right: 5,)
-                    ]
-                )
+            Stack(
+                children: [
+                  NetworkImageWidget(imageUrl: product.imageCover,width:double.infinity ,height: 128.h,radius: 0,),
+                  // Image.asset(ImagesAssets.tempProductIcon,fit: BoxFit.cover,width: double.infinity,),
+                  Positioned(child: CircleButton(imageAsset: TabBarAssets.favoriteIcon,onTap: (){},backgroundColor: ColorManager.white,),top: 5,right: 5,)
+                ]
             ),
             Expanded(
               flex: 1,
               child: Padding(
                 padding: const EdgeInsets.all(AppPadding.p8),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Text('Nike Air Jordon\nNike shoes flexible for wo..',maxLines: 2,style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s14),),
+                    Text('${product.title}',maxLines: 2,style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s14),),
                     SizedBox(height: AppSize.s4,),
                     Row(
                       children: [
-                        Text('EGP 1,200 ',style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s14),),
+                        Text('EGP ${product.price} ',style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s14),),
                         SizedBox(width: AppSize.s15,),
                         Text('2000 EGP',style: regularTextStyle(color: ColorManager.primaryColor.withOpacity(0.6),fontSize: FontSize.s12).copyWith(
                           decoration: TextDecoration.lineThrough,
@@ -74,7 +77,7 @@ class CategoryProductWidget extends StatelessWidget {
   Widget _buildProductReview(){
     return Row(
       children: [
-        Text('Review (4.6)',style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s12),),
+        Text('Review (${product.ratingsAverage})',style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s12),),
         SizedBox(width: AppSize.s2,),
         Image.asset(ImagesAssets.startIcon),
       ],
