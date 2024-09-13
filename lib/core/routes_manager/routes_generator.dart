@@ -4,7 +4,6 @@ import 'package:flutter_ecommerce_app/features/auth%20screen/sign_in_screen/sign
 import 'package:flutter_ecommerce_app/features/auth%20screen/sign_up_screen/sign_up_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/cart_screen/cart_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/home_screen.dart';
-import 'package:flutter_ecommerce_app/features/home_screen/home_tab/home_tab.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/product_details_screen/product_details_screen.dart';
 import 'package:flutter_ecommerce_app/features/splash_screen/splash_screen.dart';
 
