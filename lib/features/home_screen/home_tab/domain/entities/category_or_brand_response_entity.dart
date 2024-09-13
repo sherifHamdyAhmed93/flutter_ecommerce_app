@@ -31,9 +31,11 @@ class MetadataEntity {
   MetadataEntity({
       this.currentPage, 
       this.numberOfPages, 
-      this.limit,});
+      this.limit,
+      this.nextPage});
 
   num? currentPage;
   num? numberOfPages;
   num? limit;
+  num? nextPage;
 }
