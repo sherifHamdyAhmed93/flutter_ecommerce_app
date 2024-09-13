@@ -13,14 +13,14 @@ class ProductsResponseDto extends ProductsResponseEntity {
     if (json['data'] != null) {
       products = [];
       json['data'].forEach((v) {
-        products?.add(ProductsDTO.fromJson(v));
+        products?.add(ProductDTO.fromJson(v));
       });
     }
   }
 }
 
-class ProductsDTO extends ProductEntity {
-  ProductsDTO({
+class ProductDTO extends ProductEntity {
+  ProductDTO({
       super.sold,
     super.images,
     super.subcategory,
@@ -38,7 +38,7 @@ class ProductsDTO extends ProductEntity {
       this.updatedAt,
     super.id,});
 
-  ProductsDTO.fromJson(dynamic json) {
+  ProductDTO.fromJson(dynamic json) {
     super.sold = json['sold'];
     images = json['images'] != null ? json['images'].cast<String>() : [];
     if (json['subcategory'] != null) {

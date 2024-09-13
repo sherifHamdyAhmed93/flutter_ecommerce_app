@@ -7,6 +7,7 @@ import 'package:flutter_ecommerce_app/core/style_manager/style_manager.dart';
 import 'package:flutter_ecommerce_app/core/values_manager/values_manager.dart';
 import 'package:flutter_ecommerce_app/core/widgets/circle_button.dart';
 import 'package:flutter_ecommerce_app/core/widgets/network_image_widget.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/product_details_screen/presentation/pages/product_details_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/products_tab/domain/entities/productsResponseEntity.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
@@ -19,7 +20,14 @@ class CategoryProductWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: (){
-        Navigator.of(context).pushNamed(Routes.productRoute);
+        print('Product ID: ${product.id}');
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => ProductDetailsScreen(productId: product.id ?? ''),
+          ),
+        );
+        // Navigator.of(context).pushNamed(Routes.productRoute,arguments: product.id ?? '');
       },
       child: Container(
         clipBehavior: Clip.antiAlias,
