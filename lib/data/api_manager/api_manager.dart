@@ -18,4 +18,8 @@ class ApiManager{
     return await dio.post(ApiConstants.baseURL+entPoint,data: body,options: Options(headers: headers,validateStatus:(_){return true;} ));
   }
 
+  Future<Response> delete({required String entPoint , Map<String,dynamic>? queryParameters,Map<String,dynamic>? headers}) async{
+    return await dio.delete(ApiConstants.baseURL+entPoint,queryParameters: queryParameters,options: Options(headers: headers,validateStatus:(_){return true;} ));
+  }
+
 }

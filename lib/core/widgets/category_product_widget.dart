@@ -6,6 +6,7 @@ import 'package:flutter_ecommerce_app/core/routes_manager/routes.dart';
 import 'package:flutter_ecommerce_app/core/style_manager/style_manager.dart';
 import 'package:flutter_ecommerce_app/core/values_manager/values_manager.dart';
 import 'package:flutter_ecommerce_app/core/widgets/circle_button.dart';
+import 'package:flutter_ecommerce_app/core/widgets/favorite_button_widget.dart';
 import 'package:flutter_ecommerce_app/core/widgets/network_image_widget.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/product_details_screen/presentation/pages/product_details_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/products_tab/domain/entities/productsResponseEntity.dart';
@@ -44,7 +45,7 @@ class CategoryProductWidget extends StatelessWidget {
                 children: [
                   NetworkImageWidget(imageUrl: product.imageCover,width:double.infinity ,height: 128.h,radius: 0,),
                   // Image.asset(ImagesAssets.tempProductIcon,fit: BoxFit.cover,width: double.infinity,),
-                  Positioned(child: CircleButton(imageAsset: TabBarAssets.favoriteIcon,onTap: (){},backgroundColor: ColorManager.white,),top: 5,right: 5,)
+                  Positioned(top: 5,right: 5,child:FavoriteButton(product:product),)
                 ]
             ),
             Expanded(

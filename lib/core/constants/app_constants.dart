@@ -8,6 +8,9 @@ abstract class Endpoints{
   static const String products = '/api/v1/products';
   static const String productDetails = '/api/v1/products';
 
+  static const String wishlist = '/api/v1/wishlist';
+  static const String removeFromWishlist = '/api/v1/wishlist';
+  static const String addToWishlist = '/api/v1/wishlist';
 }
 
 abstract class ApiConstants {

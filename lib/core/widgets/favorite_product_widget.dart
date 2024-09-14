@@ -6,10 +6,16 @@ import 'package:flutter_ecommerce_app/core/style_manager/style_manager.dart';
 import 'package:flutter_ecommerce_app/core/values_manager/values_manager.dart';
 import 'package:flutter_ecommerce_app/core/widgets/circle_button.dart';
 import 'package:flutter_ecommerce_app/core/widgets/custom_elevated_button.dart';
+import 'package:flutter_ecommerce_app/core/widgets/favorite_button_widget.dart';
+import 'package:flutter_ecommerce_app/core/widgets/network_image_widget.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/products_tab/domain/entities/productsResponseEntity.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/wish_list_tab/presentation/manager/wishlist_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class FavoriteProductWidget extends StatelessWidget {
-  const FavoriteProductWidget({super.key});
+   FavoriteProductWidget({super.key,required this.product});
+
+  ProductEntity product;
 
   @override
   Widget build(BuildContext context) {
@@ -23,14 +29,16 @@ class FavoriteProductWidget extends StatelessWidget {
         ),
         child: Row(
           children: [
-            Container(
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(15),
-                    border: Border.all(color: ColorManager.primaryColor.withOpacity(0.3),width: 1)
-                ),
-                clipBehavior: Clip.antiAlias,
-                child: Image.asset(ImagesAssets.tempProductIcon,fit: BoxFit.cover,width: MediaQuery.of(context).size.width*0.3,height: double.infinity,)
-            ),
+            NetworkImageWidget(imageUrl: product.imageCover,width:MediaQuery.of(context).size.width*0.3 ,height:  double.infinity,radius: 15,),
+
+            // Container(
+            //     decoration: BoxDecoration(
+            //         borderRadius: BorderRadius.circular(15),
+            //         border: Border.all(color: ColorManager.primaryColor.withOpacity(0.3),width: 1)
+            //     ),
+            //     clipBehavior: Clip.antiAlias,
+            //     child: Image.asset(ImagesAssets.tempProductIcon,fit: BoxFit.cover,width: MediaQuery.of(context).size.width*0.3,height: double.infinity,)
+            // ),
 
             Expanded(
               child: Padding(
@@ -42,8 +50,12 @@ class FavoriteProductWidget extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text('Nike Air Jordon\nNike shoes flexible for wo..',maxLines: 2,style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s14),),
-                        CircleButton(imageAsset: TabBarAssets.favoriteIcon,onTap: (){},backgroundColor: ColorManager.white,)
+                        Expanded(child: Text('${product.title}',maxLines: 2,style: regularTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s14),)),
+                        SizedBox(width: AppSize.s8.w,),
+                        FavoriteButton(product:product)
+                        // CircleButton(imageAsset: TabBarAssets.favoriteIcon,onTap: (){
+                        //   WishlistViewModel.getProvider(context).removeFromWishList(product: product);
+                        // },backgroundColor: ColorManager.white,)
                       ],
                     ),
                     // SizedBox(height: AppSize.s4,),
@@ -67,7 +79,7 @@ class FavoriteProductWidget extends StatelessWidget {
                       children: [
                         Row(
                           children: [
-                            Text('EGP 1,200 ',style: mediumTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s18),),
+                            Text('EGP ${product.price ?? 0} ',style: mediumTextStyle(color: ColorManager.darkPrimaryColor,fontSize: FontSize.s18),),
                             SizedBox(width: AppSize.s2,),
                             Text('2000 EGP',style: regularTextStyle(color: ColorManager.primaryColor.withOpacity(0.6),fontSize: FontSize.s12).copyWith(
                                 decoration: TextDecoration.lineThrough,

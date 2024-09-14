@@ -50,7 +50,7 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
                       child: SingleChildScrollView(
                         child: Column(
                           children: [
-                            ProductSliderWidget(imgList: state.product.images ?? [],),
+                            ProductSliderWidget(product: state.product),
                             Padding(
                               padding: const EdgeInsets.symmetric(
                                   vertical: AppSize.s8, horizontal: AppSize.s15),

@@ -3,7 +3,7 @@ import 'package:flutter_ecommerce_app/core/assets_manager/assets_manager.dart';
 import 'package:flutter_ecommerce_app/core/color_manager/color_manager.dart';
 import 'package:flutter_ecommerce_app/core/widgets/custom_app_bar.dart';
 import 'package:flutter_ecommerce_app/core/widgets/custom_bottom_nav_bar_item.dart';
-import 'package:flutter_ecommerce_app/features/home_screen/favorite_screen/favorite_screen.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/wish_list_tab/presentation/pages/favorite_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/home_tab/presentation/pages/home_tab.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/products_tab/presentation/pages/products_screen.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/profile_tab/profile_screen.dart';

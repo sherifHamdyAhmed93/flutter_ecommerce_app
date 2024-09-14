@@ -62,6 +62,22 @@ import '../features/home_screen/products_tab/domain/use_cases/products_usecase.d
     as _i353;
 import '../features/home_screen/products_tab/presentation/manager/products_view_model_cubit.dart'
     as _i221;
+import '../features/home_screen/wish_list_tab/data/data_sources/wishlist_remote_data_source.dart'
+    as _i573;
+import '../features/home_screen/wish_list_tab/data/data_sources/wishlist_remote_data_source_impl.dart'
+    as _i730;
+import '../features/home_screen/wish_list_tab/data/repositories/wishlist_repository_impl.dart'
+    as _i881;
+import '../features/home_screen/wish_list_tab/domain/repositories/wishlist_repository.dart'
+    as _i525;
+import '../features/home_screen/wish_list_tab/domain/use_cases/add_to_wishlist_usecase.dart'
+    as _i981;
+import '../features/home_screen/wish_list_tab/domain/use_cases/remove_from_wishlist_usecase.dart'
+    as _i500;
+import '../features/home_screen/wish_list_tab/domain/use_cases/wishlist_usecase.dart'
+    as _i271;
+import '../features/home_screen/wish_list_tab/presentation/manager/wishlist_view_model.dart'
+    as _i782;
 
 extension GetItInjectableX on _i174.GetIt {
 // initializes the registration of main-scope dependencies inside of GetIt
@@ -82,6 +98,9 @@ extension GetItInjectableX on _i174.GetIt {
     gh.factory<_i912.ProductsRemoteDataSource>(() =>
         _i1061.ProductsRemoteDataSourceImpl(
             apiManager: gh<_i1000.ApiManager>()));
+    gh.factory<_i573.WishlistRemoteDataSource>(() =>
+        _i730.WishlistRemoteDataSourceImpl(
+            apiManager: gh<_i1000.ApiManager>()));
     gh.factory<_i722.ProductRemoteDataSource>(() =>
         _i492.ProductRemoteDataSourceImpl(apiManager: gh<_i1000.ApiManager>()));
     gh.factory<_i94.HomeTabRepository>(() => _i91.HomeTabRepositoryImpl(
@@ -99,11 +118,25 @@ extension GetItInjectableX on _i174.GetIt {
         authRemoteDataSource: gh<_i45.AuthRemoteDataSource>()));
     gh.factory<_i54.ProductRepository>(() => _i963.ProductRepositoryImpl(
         productRemoteDataSource: gh<_i722.ProductRemoteDataSource>()));
+    gh.factory<_i525.WishlistRepository>(() => _i881.WishlistRepositoryImpl(
+        wishlistRemoteDataSource: gh<_i573.WishlistRemoteDataSource>()));
+    gh.factory<_i271.WishListUseCase>(() => _i271.WishListUseCase(
+        wishlistRepository: gh<_i525.WishlistRepository>()));
+    gh.factory<_i500.RemoveFromWishListUseCase>(() =>
+        _i500.RemoveFromWishListUseCase(
+            wishlistRepository: gh<_i525.WishlistRepository>()));
+    gh.factory<_i981.AddToWishListUseCase>(() => _i981.AddToWishListUseCase(
+        wishlistRepository: gh<_i525.WishlistRepository>()));
     gh.factory<_i353.ProductsUseCase>(() => _i353.ProductsUseCase(
         productsTabRepository: gh<_i779.ProductsTabRepository>()));
     gh.factory<_i877.HomeTabCategoriesViewModelCubit>(() =>
         _i877.HomeTabCategoriesViewModelCubit(
             homeCategoriesUseCase: gh<_i1002.HomeCategoriesUseCase>()));
+    gh.factory<_i782.WishlistViewModel>(() => _i782.WishlistViewModel(
+          wishListUseCase: gh<_i271.WishListUseCase>(),
+          addToWishListUseCase: gh<_i981.AddToWishListUseCase>(),
+          removeFromWishListUseCase: gh<_i500.RemoveFromWishListUseCase>(),
+        ));
     gh.factory<_i221.ProductsViewModelCubit>(() => _i221.ProductsViewModelCubit(
         productsUseCase: gh<_i353.ProductsUseCase>()));
     gh.factory<_i224.RegisterUseCase>(() =>

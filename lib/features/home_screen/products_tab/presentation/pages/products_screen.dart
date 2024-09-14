@@ -2,11 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_ecommerce_app/core/color_manager/color_manager.dart';
 import 'package:flutter_ecommerce_app/core/values_manager/values_manager.dart';
+import 'package:flutter_ecommerce_app/core/widgets/alert_dialog.dart';
 import 'package:flutter_ecommerce_app/core/widgets/category_product_widget.dart';
 import 'package:flutter_ecommerce_app/core/widgets/custom_error_widget.dart';
 import 'package:flutter_ecommerce_app/di/di.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/products_tab/domain/entities/productsResponseEntity.dart';
 import 'package:flutter_ecommerce_app/features/home_screen/products_tab/presentation/manager/products_view_model_cubit.dart';
+import 'package:flutter_ecommerce_app/features/home_screen/wish_list_tab/presentation/manager/wishlist_view_model.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class ProductsTabScreen extends StatefulWidget {
@@ -16,7 +18,7 @@ class ProductsTabScreen extends StatefulWidget {
   State<ProductsTabScreen> createState() => _ProductsTabScreenState();
 }
 
-class _ProductsTabScreenState extends State<ProductsTabScreen> {
+class _ProductsTabScreenState extends State<ProductsTabScreen>  implements WishListNavgitor{
    ProductsViewModelCubit viewModel = getIt<ProductsViewModelCubit>();
 
   ScrollController scrollController = ScrollController();
@@ -26,6 +28,7 @@ class _ProductsTabScreenState extends State<ProductsTabScreen> {
      super.initState();
      // TODO: implement initState
      scrollController.addListener(onScroll);
+     WishlistViewModel.getProvider(context).navgitor = this;
    }
 
 
@@ -94,6 +97,30 @@ class _ProductsTabScreenState extends State<ProductsTabScreen> {
      if (scrollController.position.pixels == scrollController.position.maxScrollExtent && (viewModel.state is! ProductsViewModelStateLoadMoreData)) {
        viewModel.loadMore();
      }
+   }
+
+   @override
+   void hideLoading() {
+     DialogUtils.hideLoader(context);
+   }
+
+   @override
+   void itemAdd(String itemName) {
+     ScaffoldMessenger.of(context).showSnackBar(
+       SnackBar(content: Text('$itemName added to watchList')),
+     );
+   }
+
+   @override
+   void itemRemove(String itemName) {
+     ScaffoldMessenger.of(context).showSnackBar(
+       SnackBar(content: Text('$itemName Removed to watchList')),
+     );
+   }
+
+   @override
+   void showLoading() {
+     DialogUtils.showLoader(context: context, message: 'Loading...');
    }
 }
 

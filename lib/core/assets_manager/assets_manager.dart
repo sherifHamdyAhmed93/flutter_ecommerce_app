@@ -13,6 +13,10 @@ abstract class ImagesAssets{
   static const startIcon = '$imagePath/star.png';
   static const plusIcon = '$imagePath/plus_circle.png';
 
+
+  static const unFavoriteIcon = '$imagePath/favorite_tab.png';
+  static const favoriteIcon = '$imagePath/full_heart.png';
+
 }
 
 
@@ -27,5 +31,6 @@ abstract class TabBarAssets{
   static const profileSelectedIcon = '$imagePath/profile_tab_selected.png';
 
   static const favoriteIcon = '$imagePath/favorite_tab.png';
+
   static const favoriteSelectedIcon = '$imagePath/favorite_tab_selected.png';
 }
